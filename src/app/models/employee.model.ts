@@ -8,5 +8,5 @@ export class Employee {
   company: string = '';
   jobExperience: number = 0;
   salary: number = 0;
-  profile: string = '';
+  profile: string | null = '';
 }

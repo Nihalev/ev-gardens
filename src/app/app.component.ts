@@ -3,18 +3,21 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Employee } from './models/employee.model';
 import { EmployeeService } from './services/employee.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent implements OnInit, AfterViewInit {
+
   @ViewChild('fileInput') fileInput: any;
   @ViewChild('addEmployeeButton') addEmployeeButton: any;
   title = 'EmployeeCRUD';
 
-  employeeForm: FormGroup;
 
+  employeeForm: FormGroup;
   employees: Employee[];
   employeesToDisplay: Employee[];
   educationOptions = [
@@ -28,12 +31,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService
+
   ) {
     this.employeeForm = fb.group({});
     this.employees = [];
     this.employeesToDisplay = this.employees;
   }
 
+  base64: string | undefined;
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
       firstname: this.fb.control(''),
@@ -58,7 +63,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     //this.buttontemp.nativeElement.click();
   }
 
-  addEmployee() {
+async  convertfile(){
+  let ble:string;
+  var reader = new FileReader();
+  reader.readAsDataURL(this.fileInput.nativeElement.files[0] as Blob);
+  reader.onload = () => {localStorage.setItem("ddd",reader.result as string);this.addEmployee()}
+}
+
+  async addEmployee() {
     let employee: Employee = {
       firstname: this.FirstName.value,
       lastname: this.LastName.value,
@@ -68,7 +80,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       company: this.Company.value,
       jobExperience: this.JobExperience.value,
       salary: this.Salary.value,
-      profile: this.fileInput.nativeElement.files[0]?.name,
+      profile: localStorage.getItem('ddd'),
     };
     this.employeeService.postEmployee(employee).subscribe((res) => {
       this.employees.unshift(res);
@@ -116,7 +128,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   searchEmployees(event: any) {
     let filteredEmployees: Employee[] = [];
-
     if (event === '') {
       this.employeesToDisplay = this.employees;
     } else {
@@ -165,4 +176,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   public get Salary(): FormControl {
     return this.employeeForm.get('salary') as FormControl;
   }
+  public get image(): FormControl {
+    return this.employeeForm.get('image') as FormControl;
+  }
 }
+
+
