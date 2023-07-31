@@ -14,13 +14,6 @@ export class EmployeeComponent implements OnInit {
   constructor() {
     this.employee = {
       firstname: '',
-      lastname: '',
-      birthdate: '',
-      gender: '',
-      education: '',
-      company: '',
-      jobExperience: 0,
-      salary: 0,
       profile: '',
     };
   }
