@@ -6,7 +6,7 @@ import { Employee } from '../models/employee.model';
   providedIn: 'root',
 })
 export class EmployeeService {
-  baseUrl = 'https://my-json-server.typicode.com/Nihalev/jsonserver/posts';
+  baseUrl = 'https://happy-spoons-smoke.loca.lt/posts';
 
   constructor(private http: HttpClient) {}
 
