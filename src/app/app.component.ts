@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   base64: string | undefined;
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
-      firstname: this.fb.control(''),
+      product_name: this.fb.control(''),
     });
 
     this.employeeService.getEmployees().subscribe((res) => {
@@ -53,13 +53,13 @@ async  convertfile(){
   let ble:string;
   var reader = new FileReader();
   reader.readAsDataURL(this.fileInput.nativeElement.files[0] as Blob);
-  reader.onload = () => {localStorage.setItem("ddd",reader.result as string);this.addEmployee()}
+  reader.onload = () => {localStorage.setItem("image",reader.result as string);this.addEmployee()}
 }
 
   async addEmployee() {
     let employee: Employee = {
-      firstname: this.FirstName.value,
-      profile: localStorage.getItem('ddd'),
+      product_name: this.product_name.value,
+      product_image: localStorage.getItem('image'),
     };
     this.employeeService.postEmployee(employee).subscribe((res) => {
       this.employees.unshift(res);
@@ -88,7 +88,7 @@ async  convertfile(){
   }
 
   setForm(emp: Employee) {
-    this.FirstName.setValue(emp.firstname);
+    this.product_name.setValue(emp.product_name);
     this.fileInput.nativeElement.value = '';
   }
 
@@ -98,7 +98,7 @@ async  convertfile(){
       this.employeesToDisplay = this.employees;
     } else {
       filteredEmployees = this.employees.filter((val, index) => {
-        let targetKey = val.firstname.toLowerCase();
+        let targetKey = val.product_name.toLowerCase();
         let searchKey = event.toLowerCase();
         return targetKey.includes(searchKey);
       });
@@ -107,12 +107,12 @@ async  convertfile(){
   }
 
   clearForm() {
-    this.FirstName.setValue('');
+    this.product_name.setValue('');
     this.fileInput.nativeElement.value = '';
   }
 
-  public get FirstName(): FormControl {
-    return this.employeeForm.get('firstname') as FormControl;
+  public get product_name(): FormControl {
+    return this.employeeForm.get('product_name') as FormControl;
   }
 }
 

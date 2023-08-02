@@ -10,7 +10,7 @@
     <div class="toolbar">
 
       <div class="add-employee">
-        <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal"
+        <button type="button" class="btn btn-outline-success btn-xs" data-bs-toggle="modal"
           data-bs-target="#exampleModal" #addEmployeeButton>Add plant</button>
       </div>
 
@@ -56,14 +56,14 @@
           <!-- FIRST AND LAST NAME -->
           <div class="row">
             <div class="col">
-              <input type="text" class="form-control" placeholder="plant Name" formControlName="firstname">
+              <input type="text" class="form-control" placeholder="plant Name" formControlName="product_name">
             </div>
           </div>
 
           <div class="row mt-3">
             <div class="col">
-              <label for="profile" class="form-label">Profile Image</label>
-              <input type="file" class="form-control" id="profile" #fileInput formControlName="image">
+              <label for="product_image" class="form-label">product_image Image</label>
+              <input type="file" class="form-control" id="product_image" #fileInput formControlName="image">
             </div>
           </div>
         </form>

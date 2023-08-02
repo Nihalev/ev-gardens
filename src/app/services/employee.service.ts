@@ -6,7 +6,7 @@ import { Employee } from '../models/employee.model';
   providedIn: 'root',
 })
 export class EmployeeService {
-  baseUrl = 'https://happy-spoons-smoke.loca.lt/posts';
+  baseUrl = 'https://django-vercel-phi-ecru.vercel.app/api/item/';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +19,6 @@ export class EmployeeService {
   }
 
   deleteEmployee(id: string) {
-    return this.http.delete(this.baseUrl + '/' + id);
+    return this.http.delete(this.baseUrl + id);
   }
 }

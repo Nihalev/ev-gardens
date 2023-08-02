@@ -13,13 +13,12 @@ export class EmployeeComponent implements OnInit {
 
   constructor() {
     this.employee = {
-      firstname: '',
-      profile: '',
+      product_name: '',
+      product_image: '',
     };
   }
 
   ngOnInit(): void {
-    console.log(this.employee);
   }
 
   deleteEmployeeClicked() {
