@@ -6,7 +6,7 @@ import { Employee } from '../models/employee.model';
   providedIn: 'root',
 })
 export class EmployeeService {
-  baseUrl = 'https://django-vercel-phi-ecru.vercel.app/api/item/';
+  baseUrl = 'https://evgardens-api.vercel.app/api/item/';
 
   constructor(private http: HttpClient) {}
 
